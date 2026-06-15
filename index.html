@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
+    <title>김규원고사</title>
+
+    <!-- CSS 연결 -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <meta name="color-scheme" content="light only"/>
+    <meta name="supported-color-schemes" content="light"/>
+</head>
+<body>
+    <!-- <div id="intro">
+        <div class="typing-wrap">
+            <span id="typing-text"></span>
+            <span class="cursor">|</span>
+        </div>
+    </div> -->
+
+    <div class="container">
+        <div class="header">
+            <div class="class_number">
+                <span class="round_txt">제 1교시</span>
+            </div>
+            <div class="sub_title">
+                <span>2026학년도&nbsp;&nbsp;7월&nbsp;&nbsp;사육사능력시험&nbsp;&nbsp;문제지</span>
+            </div>
+            <div class="main_title">
+                <span>규원&nbsp;&nbsp;영역</span>
+            </div>
+        </div>
+        <div class="info_box">
+            <div class="name_box">
+                <span class="name_lbl">성명</span>
+                <input id="name_txt" class="name_txt"></input>
+            </div>
+            <table class="exam-info">
+                <tr>
+                    <th style="font-size: 16px;">수험번호</th>
+                    <td>
+                        <div class="exam-number">
+                            <span>1</span>
+                            <span>9</span>
+                            <span>9</span>
+                            <span>8</span>
+
+                            <span class="hyphen">─</span>
+
+                            <span>0</span>
+                            <span>1</span>
+                            <span>1</span>
+                            <span style="border: none;">4</span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="content_area">
+            <div class="personal_info">
+                <span style="font-size: 20px; font-weight: bolder;">&lt;개인정보 수집 및 이용 동의서&gt;</span>
+                <div class="personal_content">
+                    <span>- 개인정보 수집 및 이용 목적 : 이벤트 참여자 확인 및 이벤트 운영</span>
+                    <span>- 수집하는 개인정보 항목 : 이름 또는 닉네임</span>
+                    <span>- 개인정보 보유 및 이용 기간 : 이벤트 기간(2026.07.05. ~ 2026.07.11.) 동안 보관하며, 이벤트 종료 후 즉시 파기합니다.</span>
+                    <span>- 수집된 개인정보는 이벤트 운영 목적으로만 이용되며, 다른 이용자에게 공개되지 않습니다.</span>
+                    <span>- 개인정보 수집·이용에 대한 동의를 거부할 권리가 있으나, 동의하지 않을 경우 이벤트 참여가 제한될 수 있습니다.</span>
+                </div>
+                <div class="check_area">
+                    <input type="radio" id="option1" name="option" value="1">
+                    <label for="option1">동의함</label>
+                    <input type="radio" id="option2" name="option" value="2">
+                    <label for="option2">동의하지 않음</label>
+                </div>
+            </div>
+            <div class="personal_info">
+                <span style="font-size: 20px; font-weight: bolder;">&lt;참고사항&gt;</span>
+                <div class="personal_content">
+                    <span>※ 마지막 서술형 문제의 답변은 이벤트 종료 후 공개될 수 있습니다. 답변 작성 시 이를 참고해 주세요.<br>센스 있는 드립과 가벼운 조롱은 환영하지만, 특정 인물에 대한 욕설·비방·인신공격은 금지되며 해당 답변은 공개 대상에서 제외될 수 있습니다.</span>
+                </div>
+            </div>
+            <div class="start-message">
+                아래 버튼을 클릭하면 시험이 시작됩니다.
+            </div>
+            <div class="exam-btn-area">
+                <button type="button" class="start-btn" id="start-btn">
+                    <img src="img/pencil.png" alt="연필" class="btn-icon-left">
+                    <span>시험 시작하기</span>
+                    <img src="img/right-arrow.png" alt="화살표" class="btn-icon-right">
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    const texts = [
+        "안녕하세요.",
+        "지금부터 시험을 시작합니다.",
+        "첫번째 영역입니다.",
+        "규원 영역"
+    ];
+
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+
+    const typingText = document.getElementById("typing-text");
+    const typingWrap = document.querySelector(".typing-wrap");
+    const container = document.querySelector(".container");
+
+    function typeEffect() {
+
+        const currentText = texts[textIndex];
+
+        if (!isDeleting) {
+
+            typingText.textContent =
+                currentText.substring(0, charIndex + 1);
+
+            charIndex++;
+
+            if (charIndex === currentText.length) {
+
+                // 마지막 문장
+                if (textIndex === texts.length - 1) {
+
+                    setTimeout(() => {
+
+                        typingWrap.classList.add("move-top");
+
+                        setTimeout(() => {
+
+                            // 시험지 제목 변경
+                            document.querySelector(".main_title span")
+                                .textContent = currentText;
+
+                            // 시험지 등장
+                            container.classList.add("show");
+
+                            // 인트로 제거
+                            document.getElementById("intro")
+                                .remove();
+
+                        }, 1500);
+
+                    }, 1000);
+
+                    return;
+                }
+
+                isDeleting = true;
+
+                setTimeout(typeEffect, 1200);
+
+                return;
+            }
+
+        } else {
+
+            typingText.textContent =
+                currentText.substring(0, charIndex - 1);
+
+            charIndex--;
+
+            if (charIndex === 0) {
+
+                isDeleting = false;
+                textIndex++;
+            }
+        }
+
+        setTimeout(typeEffect, isDeleting ? 50 : 120);
+    }
+
+    typeEffect();
+</script>
+
+</html>
