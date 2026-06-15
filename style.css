@@ -70,11 +70,16 @@ body {
 }
 
 .name_lbl {
-    flex: 1;
+    flex: 1.5;
     text-align: center;
     padding: 12px 0;
     font-weight: bold;
     border-right: #000000;
+}
+
+input {
+    border: none;
+    text-align: center;
 }
 
 input:focus {
@@ -240,4 +245,8 @@ input[type="radio"] {
     width: 20px;
     height: 20px;
     object-fit: contain;
+}
+
+.exam-btn-area {
+    margin-bottom: 20px;
 }
