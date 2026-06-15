@@ -24,10 +24,6 @@ body {
     padding-bottom: 20px;
 }
 
-.container.show{
-    opacity:1;
-}
-
 .class_number {
     font-size: 18px;
     text-align: left;
@@ -50,31 +46,27 @@ body {
 .main_title {
     font-size: 60px;
     font-weight: bolder;
-    margin-bottom: 50px;
+    margin-bottom: 70px;
 }
 
 .info_box {
     display: flex; 
     justify-content: center; 
-    align-items: center; 
-    height: 48px;
-    margin-bottom: 60px;
+    align-items: start;
+    margin-bottom: 40px;
 }
 
-.name_box {
-    display: flex;
-    border: 1px solid #000000;
-    width: 28%;
-    height: 100%;
-    margin-right: 25px;
+.name-area{
+    display:flex;
+    flex-direction:column;
+    margin-top: 20px;
 }
 
-.name_lbl {
-    flex: 1.5;
-    text-align: center;
-    padding: 12px 0;
-    font-weight: bold;
-    border-right: #000000;
+.name-guide{
+    margin-top:10px;
+    font-size:13px;
+    color:#484848;
+    text-align:left;
 }
 
 input {
@@ -167,7 +159,7 @@ input[type="radio"] {
     justify-content: center;
 
     width: 100%;
-    margin: 20px 0;
+    margin: 25px 0;
 
     font-size: 15px;
     font-weight: 500;

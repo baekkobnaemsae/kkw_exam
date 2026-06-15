@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1"> -->
-     <meta name="viewport" content="width=980">
+    <meta name="viewport" content="width=980">
     <title>김규원고사</title>
 
     <!-- CSS 연결 -->
@@ -35,20 +34,21 @@
             </div>
         </div>
         <div class="info_box">
-            <!-- <div class="name_box">
-                <span class="name_lbl">성명</span>
-                <input id="name_txt" class="name_txt"></input>
-            </div> -->
-            <table class="exam-info" style="margin-right: 20px;">
-                <tr>
-                    <th style="font-size: 16px;">성명</th>
-                    <td>
-                        <div class="exam-number">
-                            <input type="text" id="name_txt">
-                        </div>
-                    </td>
-                </tr>
-            </table>
+            <div class="name_area">
+                <table class="exam-info" style="margin-right: 20px;">
+                    <tr>
+                        <th style="font-size: 16px;">성명</th>
+                        <td>
+                            <div class="exam-number">
+                                <input type="text" id="name_txt">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <span class="name-guide">
+                    * 성명 또는 닉네임을 적어주세요.
+                </span>
+            </div>
             <table class="exam-info">
                 <tr>
                     <th style="font-size: 16px;">수험번호</th>
@@ -75,7 +75,7 @@
                 <span style="font-size: 20px; font-weight: bolder;">&lt;개인정보 수집 및 이용 동의서&gt;</span>
                 <div class="personal_content">
                     <span>- 개인정보 수집 및 이용 목적 : 이벤트 참여자 확인 및 이벤트 운영</span>
-                    <span>- 수집하는 개인정보 항목 : 이름 또는 닉네임</span>
+                    <span>- 수집하는 개인정보 항목 : 성명 또는 닉네임</span>
                     <span>- 개인정보 보유 및 이용 기간 : 이벤트 기간(2026.07.05. ~ 2026.07.11.) 동안 보관하며, 이벤트 종료 후 즉시 파기합니다.</span>
                     <span>- 수집된 개인정보는 이벤트 운영 목적으로만 이용되며, 다른 이용자에게 공개되지 않습니다.</span>
                     <span>- 개인정보 수집·이용에 대한 동의를 거부할 권리가 있으나, 동의하지 않을 경우 이벤트 참여가 제한될 수 있습니다.</span>
@@ -106,4 +106,31 @@
         </div>
     </div>
 </body>
+
+<script>
+    $('#start-btn').click(function() {
+        const name = $("#name_txt").val().trim();
+
+        if (name === "") {
+            alert("성명 또는 닉네임을 입력해주세요.");
+            $("#name_txt").focus();
+            return;
+        }
+
+        const agree = $("input[name='option']:checked");
+
+        if (agree.length === 0) {
+            alert("개인정보 수집 및 이용 동의 여부를 선택해주세요.");
+            return;
+        }
+
+        if (agree.val() === "2") {
+            alert("개인정보 수집 및 이용에 동의해야 시험에 응시할 수 있습니다.");
+            return;
+        }
+
+        location.href = "exam.html";
+    });
+</script>
+
 </html>
