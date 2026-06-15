@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" name="viewport" content="width=device-width,initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>김규원고사</title>
 
     <!-- CSS 연결 -->
@@ -95,88 +96,4 @@
         </div>
     </div>
 </body>
-
-<script>
-    const texts = [
-        "안녕하세요.",
-        "지금부터 시험을 시작합니다.",
-        "첫번째 영역입니다.",
-        "규원 영역"
-    ];
-
-    let textIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-
-    const typingText = document.getElementById("typing-text");
-    const typingWrap = document.querySelector(".typing-wrap");
-    const container = document.querySelector(".container");
-
-    function typeEffect() {
-
-        const currentText = texts[textIndex];
-
-        if (!isDeleting) {
-
-            typingText.textContent =
-                currentText.substring(0, charIndex + 1);
-
-            charIndex++;
-
-            if (charIndex === currentText.length) {
-
-                // 마지막 문장
-                if (textIndex === texts.length - 1) {
-
-                    setTimeout(() => {
-
-                        typingWrap.classList.add("move-top");
-
-                        setTimeout(() => {
-
-                            // 시험지 제목 변경
-                            document.querySelector(".main_title span")
-                                .textContent = currentText;
-
-                            // 시험지 등장
-                            container.classList.add("show");
-
-                            // 인트로 제거
-                            document.getElementById("intro")
-                                .remove();
-
-                        }, 1500);
-
-                    }, 1000);
-
-                    return;
-                }
-
-                isDeleting = true;
-
-                setTimeout(typeEffect, 1200);
-
-                return;
-            }
-
-        } else {
-
-            typingText.textContent =
-                currentText.substring(0, charIndex - 1);
-
-            charIndex--;
-
-            if (charIndex === 0) {
-
-                isDeleting = false;
-                textIndex++;
-            }
-        }
-
-        setTimeout(typeEffect, isDeleting ? 50 : 120);
-    }
-
-    typeEffect();
-</script>
-
 </html>

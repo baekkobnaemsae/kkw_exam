@@ -13,49 +13,6 @@ body {
     align-items: center;
 }
 
-#intro{
-    position:fixed;
-    inset:0;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    z-index:9999;
-}
-
-.typing-wrap{
-    position:absolute;
-
-    left:50%;
-    top:50%;
-
-    transform:translate(-50%, -50%);
-
-    display:flex;
-    align-items:center;
-
-    font-size:60px;
-    font-weight:bold;
-
-    transition:all 1.5s ease;
-}
-
-.typing-wrap.move-top{
-    top:250px;
-}
-
-.cursor{
-    margin-left:5px;
-    animation:blink .8s infinite;
-}
-
-@keyframes blink{
-    50%{
-        opacity:0;
-    }
-}
-
 .container {
     width: 980px;
     text-align: center;
@@ -65,9 +22,6 @@ body {
     margin-top: 50px;
     margin-bottom: 50px;
     padding-bottom: 20px;
-
-    /* opacity:0;
-    transition:opacity 1s ease; */
 }
 
 .container.show{
