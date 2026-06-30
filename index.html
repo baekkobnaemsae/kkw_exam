@@ -105,32 +105,55 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            localStorage.clear();
+
+            $('#start-btn').click(function() {
+                const name = $("#name_txt").val().trim();
+        
+                if (name === "") {
+                    alert("성명 또는 닉네임을 입력해주세요.");
+                    $("#name_txt").focus();
+                    return;
+                }
+        
+                const check_info = $("input[name='option']:checked");
+        
+                if (check_info.length === 0) {
+                    alert("개인정보 수집 및 이용 동의 여부를 선택해주세요.");
+                    return;
+                }
+        
+                if (check_info.val() === "2") {
+                    alert("개인정보 수집 및 이용에 동의해야 시험에 응시할 수 있습니다.");
+                    return;
+                }
+
+                let agree = "";
+
+                if (check_info.val() === "1") {
+                    agree = "o";
+                } else {
+                    agree = "x";
+                }
+
+                const examData = {
+                    name: name,
+                    agree: agree,
+                    answers: {
+                        round1: {},
+                        round2: {}
+                    }
+                };
+        
+                localStorage.setItem("examData", JSON.stringify(examData));
+        
+                location.href = "exam.html";
+            });
+        });
+    </script>
 </body>
 
-<script>
-    $('#start-btn').click(function() {
-        const name = $("#name_txt").val().trim();
-
-        if (name === "") {
-            alert("성명 또는 닉네임을 입력해주세요.");
-            $("#name_txt").focus();
-            return;
-        }
-
-        const agree = $("input[name='option']:checked");
-
-        if (agree.length === 0) {
-            alert("개인정보 수집 및 이용 동의 여부를 선택해주세요.");
-            return;
-        }
-
-        if (agree.val() === "2") {
-            alert("개인정보 수집 및 이용에 동의해야 시험에 응시할 수 있습니다.");
-            return;
-        }
-
-        location.href = "exam.html";
-    });
-</script>
 
 </html>
