@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=980">
+    <title>김규원고사</title>
+
+    <!-- CSS 연결 -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <meta name="color-scheme" content="light only"/>
+    <meta name="supported-color-schemes" content="light"/>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="notice_sub">
+                <span>2026학년도&nbsp;&nbsp;7월&nbsp;&nbsp;사육사능력시험&nbsp;&nbsp;문제지</span>
+            </div>
+        </div>
+        <div class="content_area">
+            <div class="notice_info">
+                <div class="notice_title">
+                    <span>안내사항</span>
+                </div>
+                <div class="notice_area">
+                    <div class="notice_box">
+                        <img src="img/dot.png" alt="점" style="width: 30px; vertical-align: middle; margin: 0 10px 5px 10px;">
+                        <span class="notice_content">공통과목 시험이 종료되었습니다.</span>
+                    </div>
+                    <div class="notice_box">
+                        <img src="img/dot.png" alt="점" style="width: 30px; vertical-align: middle; margin: 0 10px 5px 10px;">
+                        <span class="notice_content">추가로 선택과목이 준비되어있습니다.</span>
+                    </div>
+                    <div class="notice_box">
+                        <img src="img/dot.png" alt="점" style="width: 30px; vertical-align: middle; margin: 0 10px 5px 10px;">
+                        <span class="notice_content">종료하기 버튼은 즉시 시험지 종료되니 신중히 눌러주세요.</span>
+                    </div>
+                </div>
+            </div>
+            <div style="margin: 10px 0 10px 0;">
+            </div>
+            <div class="exam-btn-area">
+                <div style="display: flex;">
+                    <button class="exam_btn" type="button" id="continue_btn">선택과목 보기</button>
+                    <button class="exam_btn" type="button" id="exit_btn">종료하기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            localStorage.clear();
+
+            $('#start-btn').click(function() {
+                const name = $("#name_txt").val().trim();
+        
+                if (name === "") {
+                    alert("성명 또는 닉네임을 입력해주세요.");
+                    $("#name_txt").focus();
+                    return;
+                }
+        
+                const check_info = $("input[name='option']:checked");
+        
+                if (check_info.length === 0) {
+                    alert("개인정보 수집 및 이용 동의 여부를 선택해주세요.");
+                    return;
+                }
+        
+                if (check_info.val() === "2") {
+                    alert("개인정보 수집 및 이용에 동의해야 시험에 응시할 수 있습니다.");
+                    return;
+                }
+
+                let agree = "";
+
+                if (check_info.val() === "1") {
+                    agree = "o";
+                } else {
+                    agree = "x";
+                }
+
+                const examData = {
+                    name: name,
+                    agree: agree,
+                    answers: {
+                        round1: {},
+                        round2: {}
+                    }
+                };
+        
+                localStorage.setItem("examData", JSON.stringify(examData));
+        
+                location.href = "exam.html";
+            });
+        });
+    </script>
+</body>
+
+
+</html>
